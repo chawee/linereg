@@ -1,0 +1,82 @@
+---
+title: "Linear Regressions in R and Python"
+author: "Brian Torsey"
+date: "November 9, 2016"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Mock Data
+```{r}
+true_beta_0 <- 2.2
+true_beta_1 <- -7.6
+```
+```{r scatter, echo=TRUE}
+x_1 <- rnorm(1000,5,7)
+true_error <- rnorm(1000,0,6)
+y<- true_beta_0 + true_beta_1*x_1 +true_error
+plot(x_1,y, pch=20, col="red")
+
+```
+
+##Distribution x_1
+```{r hist x}
+hist(x_1)
+```
+
+##Distribution y
+```{r hist y}
+hist(y)
+```
+
+## Line regression on x_1
+```{r linereg, echo=TRUE}
+xreg_1<- lm(y ~ x_1)
+plot(x_1,y, pch=20, col="red")
+abline(xreg_1)
+
+```
+
+
+## Summary of Reg function
+
+```{r cars, echo = TRUE}
+cor(x_1,y)
+summary(xreg_1)
+```
+
+## Second Variable
+```{r}
+true_beta_2 <- 5.6
+```
+
+```{r gamma, echo=TRUE}
+x_2 <- rgamma(1000,1)
+y_2<-true_beta_0 +true_beta_1*x_1+ true_beta_2*x_2 + true_error
+xreg_both <- lm (y_2 ~ x_1 +x_2)
+summary(xreg_both)
+```
+
+##Distribution x_2
+```{r hist x_2}
+hist(x_2)
+```
+
+## Squaring x_1
+```{r z, echo=TRUE}
+z <- x_1*x_1
+zreg <- lm( y~ z)
+plot(z,y, pch=20)
+abline(zreg)
+```
+
+##Distribution z
+```{r hist z}
+hist(z)
+```
+
+
+
