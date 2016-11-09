@@ -1,11 +1,6 @@
 import pandas as pd
 import numpy as np
 import matplotlib.pyplot as plt
-frame=pd.DataFrame(np.random.randn(1000,5),columns=['a','b','c','d','e'])
-
-print (frame['a'].corr(frame['b']))
-
-print (frame.corr())
 
 data = pd.DataFrame ({
 'length' : [94,74,147,58,86,94,63,86,69,72,128,85,82,86,88,72,74,61,90,89,68,76,114,90,78],
@@ -16,6 +11,8 @@ data = pd.DataFrame ({
 data_log = np.log(data)
 # Get the linear models
 lm_original = np.polyfit(data.length, data.weight, 1)
+
+
 
 # calculate the y values based on the co-efficients from the model
 r_x, r_y = zip(*((i, i*lm_original[0] + lm_original[1]) for i in data.length))
